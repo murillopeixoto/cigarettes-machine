@@ -39,7 +39,7 @@ class PurchaseCigarettesCommand extends Command
 
         try {
             $purchaseItem = $cigaretteMachine->execute($purchaseTransaction);
-            $printer->printSuccessMessage($purchaseItem, $purchaseTransaction);
+            $printer->printSuccessMessage($purchaseItem);
         } catch (AmountNotEnoughException $e) {
             $printer->printFailureMessage($purchaseTransaction, $e->getAmount());
         }

@@ -26,16 +26,16 @@ class ChangeCalculator
     ];
 
     /**
-     * @param float $totalExpected
+     * @param float $totalMissing
      * @return array
      */
-    public static function calculate(float $totalExpected): array
+    public static function calculate(float $totalMissing): array
     {
-        $totalMissing = $totalExpected;
         /** @todo Implement a collection */
         $totalInCash = [];
         foreach (self::$availableCash as $cash) {
-            $count = self::calculateCash($totalMissing, $cash);
+            // Multiply by 100 and ceil to avoid calculation with floating numbers
+            $count = self::calculateCash(ceil($totalMissing * 100), $cash * 100);
             if ($count > 0) {
                 /** @todo Implement an entity */
                 $totalInCash[] = [sprintf('%.2f', $cash), $count];
@@ -47,11 +47,11 @@ class ChangeCalculator
     }
 
     /**
-     * @param float $totalMissing
-     * @param float $cash
+     * @param int $totalMissing
+     * @param int $cash
      * @return int
      */
-    private static function calculateCash(float $totalMissing, float $cash): int
+    private static function calculateCash(int $totalMissing, int $cash): int
     {
         if ($totalMissing < $cash) {
             return 0;

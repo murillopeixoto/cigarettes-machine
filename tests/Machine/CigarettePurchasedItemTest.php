@@ -40,7 +40,7 @@ class CigarettePurchasedItemTest extends TestCase
         $purchasedItem = new CigarettePurchasedItem($purchaseTransaction);
         $this->assertEquals(5, $purchasedItem->getItemQuantity());
         $this->assertEquals(24.95, $purchasedItem->getTotalAmount());
-        $this->assertEquals([['0.02', 2]], $purchasedItem->getChange());
+        $this->assertEquals([['0.05', 1]], $purchasedItem->getChange());
         $this->assertEquals(0, $purchasedItem->getAmountMissing());
         $this->assertEquals(false, $purchasedItem->isSomeAmountMissing());
     }
